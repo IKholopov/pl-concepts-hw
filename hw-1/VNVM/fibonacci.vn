@@ -1,0 +1,39 @@
+.stack 1024
+.entry main
+intro:
+	.ascii "Which fibbonaci number are you interested in? "
+final:
+	.ascii "Looks like it is a "
+fibbonaci_init:
+	mov r1, #1
+	mov r2, #0
+	mov r0, #0
+	jeq fibbonaci_next
+fibbonaci:
+	push {r4, lr}
+	cmp r4, #0
+	jeq fibbonaci_init
+fibbonaci_next:
+	add r4, #1
+	cmp r4, r5
+	jeq exit_fib
+	mov r3, r1
+	add r1, r2
+	mov r2, r3
+	bl fibbonaci
+exit_fib:
+	pop {r4, pc}
+main:
+	push {lr}
+	mov r0, intro
+	printf
+	scann
+	mov r5, r0
+	mov r4, #0
+	bl fibbonaci
+	mov r0, final
+	printf
+	mov r0, r1
+	printn
+	mov r0, #0
+	pop {pc}

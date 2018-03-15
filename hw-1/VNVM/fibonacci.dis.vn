@@ -1,0 +1,62 @@
+.stack 1024
+.entry 163
+30:
+	.ascii "which fibbonaci number are you interested in? "
+80:
+	.ascii "looks like it is a "
+103:
+	MOV r1, #1
+107:
+	MOV r2, #0
+111:
+	MOV r0, #0
+115:
+	JEQ 131
+119:
+	PUSH { r4, lr }
+123:
+	CMP r4, #0
+127:
+	JEQ 103
+131:
+	ADD r4, #1
+135:
+	CMP r4, r5
+139:
+	JEQ 159
+143:
+	MOV r3, r1
+147:
+	ADD r1, r2
+151:
+	MOV r2, r3
+155:
+	BL 119
+159:
+	POP { r4, pc }
+163:
+	PUSH { lr }
+167:
+	MOV r0, #30
+171:
+	PRINTF
+175:
+	SCANN
+179:
+	MOV r5, r0
+183:
+	MOV r4, #0
+187:
+	BL 119
+191:
+	MOV r0, #80
+195:
+	PRINTF
+199:
+	MOV r0, r1
+203:
+	PRINTN
+207:
+	MOV r0, #0
+211:
+	POP { pc }
